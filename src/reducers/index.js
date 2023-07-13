@@ -1,7 +1,10 @@
 const initialState = {
     heroes: [],
     heroesLoadingStatus: 'idle',
-    filters: []
+    filters: [],
+    filtersLoadingStatus: 'idle',
+    activeFilter: 'all',
+    filteredHeroes: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +24,17 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 heroesLoadingStatus: 'error'
+            }
+        case 'HERO_DELETED': 
+            // Формируем новый массив
+            const newHeroList = state.heroes.filter(item => item.id !== action.payload);
+            return {
+                ...state,
+                heroes: newHeroList,
+                // Фильтруем новые данные по фильтру, который сейчас применяется
+                filteredHeroes: state.activeFilter === 'all' ? 
+                                newHeroList : 
+                                newHeroList.filter(item => item.element === state.activeFilter)
             }
         default: return state
     }
