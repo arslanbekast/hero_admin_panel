@@ -17,6 +17,12 @@
       "name": "Морской герой",
       "description": "Как аквамен, но не из DC",
       "element": "water"
+    },
+    {
+      "id": "cf0efc7b-f78f-49a9-aa16-1da8806e66cb",
+      "name": "Лучший герой",
+      "description": "Самое лучшее",
+      "element": "fire"
     }
   ],
   "filters": [
