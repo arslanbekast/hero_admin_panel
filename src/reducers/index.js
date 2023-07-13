@@ -18,6 +18,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 heroes: action.payload,
+                // ЭТО МОЖНО СДЕЛАТЬ И ПО ДРУГОМУ
+                // Я специально показываю вариант с действиями тут, но более правильный вариант
+                // будет показан в следующем уроке
+                filteredHeroes: state.activeFilter === 'all' ? 
+                                action.payload : 
+                                action.payload.filter(item => item.element === state.activeFilter),
                 heroesLoadingStatus: 'idle'
             }
         case 'HEROES_FETCHING_ERROR':
@@ -49,6 +55,8 @@ const reducer = (state = initialState, action) => {
                                 state.heroes :
                                 state.heroes.filter(item => item.element === action.payload)
             }
+        // Самая сложная часть - это показывать новые элементы по фильтрам
+        // при создании или удалении
         case 'HERO_CREATED':
             // Формируем новый массив    
             let newCreatedHeroList = [...state.heroes, action.payload];
