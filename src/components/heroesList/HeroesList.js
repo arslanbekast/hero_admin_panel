@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 import { createSelector } from 'reselect';
 
-import { heroesFetching, heroesFetched, heroesFetchingError, heroDeleted } from '../../actions';
+import { fetchHeroes, heroDeleted } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
@@ -43,13 +43,21 @@ const HeroesList = () => {
     const {request} = useHttp();
 
     useEffect(() => {
-        dispatch(heroesFetching());
-        request("http://localhost:3001/heroes")
-            .then(data => dispatch(heroesFetched(data)))
-            .catch(() => dispatch(heroesFetchingError()))
+        dispatch(fetchHeroes(request));
 
         // eslint-disable-next-line
     }, []);
+
+    // useEffect(() => {
+    //     // dispatch('HEROES_FETCHING');
+    //     // dispatch(heroesFetching);
+    //     dispatch(heroesFetching());
+    //     request("http://localhost:3001/heroes")
+    //         .then(data => dispatch(heroesFetched(data)))
+    //         .catch(() => dispatch(heroesFetchingError()))
+
+    //     // eslint-disable-next-line
+    // }, []);
 
     // Функция удаления героя из списка и из json файла
     // Функция берет id и по нему удаляет ненужного персонажа из store
