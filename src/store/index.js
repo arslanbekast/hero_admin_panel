@@ -34,11 +34,6 @@ const store = createStore(
                         applyMiddleware(ReduxThunk, stringMiddleware), 
                         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
                     )
-                    
-                    // compose(
-                    //     enhancer, 
-                    //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-                    // )
                     );
 
 export default store;
