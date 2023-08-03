@@ -24,7 +24,7 @@ const heroesSlice = createSlice({
     initialState,
     reducers: {
         heroCreated: (state, action) => {heroesAdapter.addOne(state, action.payload)},
-        heroDeleted: (state, action) => {state.heroes = state.heroes.filter(item => item.id !== action.payload)}
+        heroDeleted: (state, action) => {heroesAdapter.removeOne(state, action.payload)}
     },
     extraReducers: (builder) => {
         builder
